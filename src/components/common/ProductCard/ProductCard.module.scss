@@ -1,0 +1,27 @@
+@import '../../../styles/settings.scss';
+
+
+@import '../../../styles/settings.scss';
+
+.root {
+  margin: 10px;
+
+  .card {
+    padding: 10px;
+    .image {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+    }
+    .content {
+      .title {
+        font-weight: bold;
+      }
+      .price {
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    }
+  }
+}
