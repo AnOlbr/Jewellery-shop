@@ -1,18 +1,18 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { initialState } from './initialState';
-import { reducer as postsReducer } from './postsRedux';
+import { reducer as productReducer } from './productRedux';
 
 // define reducers
 const reducers = {
-  posts: postsReducer,
+  products: productReducer,
 };
 
 // add blank reducers for initial state properties without reducers
-Object.keys(initialState).forEach(item => {
-  if (typeof reducers[item] == 'undefined') {
+Object.keys(initialState).forEach((item) => {
+  if (typeof reducers[item] === 'undefined') {
     reducers[item] = (statePart = null) => statePart;
   }
 });
@@ -24,6 +24,6 @@ export const store = createStore(
   combinedReducers,
   initialState,
   composeWithDevTools(
-    applyMiddleware(thunk)
-  )
+    applyMiddleware(thunk),
+  ),
 );
