@@ -1,9 +1,13 @@
 /* selectors */
-export const getAll = ({products}) => products.data;
+export const getAll = ({ products }) => products.data;
+export const getProductById = ({ products }, id) => {
+  const product = products.data.filter((prod) => prod.id === id);
+  return product[0];
+};
 
 /* action name creator */
 const reducerName = 'products';
-const createActionName = name => `app/${reducerName}/${name}`;
+const createActionName = (name) => `app/${reducerName}/${name}`;
 
 /* action types */
 const FETCH_START = createActionName('FETCH_START');
@@ -11,9 +15,9 @@ const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
 
 /* action creators */
-export const fetchStarted = payload => ({ payload, type: FETCH_START });
-export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
-export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
+export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
+export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 
 /* thunk creators */
 

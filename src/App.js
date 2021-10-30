@@ -9,14 +9,14 @@ import { store } from './redux/store';
 
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
-import { Post } from './components/views/Post/Post';
-import { PostEdit } from './components/views/PostEdit/PostEdit';
-import { PostAdd } from './components/views/PostAdd/PostAdd';
 import { NotFound } from './components/views/NotFound/NotFound';
+import { Order } from './components/views/Order/Order';
+import { ProductPage } from './components/views/ProductPage/ProductPage';
+
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#2B4C6F' },
+    primary: { main: '#9FD9E3' },
   },
 });
 
@@ -28,11 +28,10 @@ const App = () => (
           <CssBaseline />
           <MainLayout>
             <Switch>
-              <Route exact path='/' component={Homepage} />
-              <Route exact path='/post/add' component={PostAdd} />
-              <Route exact path='/post/:id' component={Post} />
-              <Route exact path='/post/:id/edit' component={PostEdit} />
-              <Route path='*' component={NotFound} />
+              <Route exact path="/" component={Homepage} />
+              <Route exact path="/products/:id" component={ProductPage} />
+              <Route exact path="/order" component={Order} />
+              <Route path="*" component={NotFound} />
             </Switch>
           </MainLayout>
         </ThemeProvider>

@@ -31,7 +31,6 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Order,
   // Container as Order,
   Component as Order,
 };
