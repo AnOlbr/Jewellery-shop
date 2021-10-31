@@ -16,7 +16,7 @@ import { ProductPage } from './components/views/ProductPage/ProductPage';
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#9FD9E3' },
+    primary: { main: '#000000' },
   },
 });
 

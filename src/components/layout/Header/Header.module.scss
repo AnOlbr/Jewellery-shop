@@ -1,4 +1,26 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  .toolbar {
+    background-color: #9FD9E3;
+    .name {
+      color: black;
+      font-size: 40px;
+      margin: auto;
+      font-style: italic;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-family: 'Georgia';
+
+    }
+    .cart {
+      .cartContent {
+        background: white;
+        padding: 5px 10px;
+        margin-left: 10px;
+        border-radius: 10px;
+      }
+    }
+  }
+}

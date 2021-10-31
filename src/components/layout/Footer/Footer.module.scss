@@ -1,4 +1,29 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  background: grey;
+  display: flex;
+
+  .container {
+    display: flex;
+    margin: auto;
+    padding: 20px;
+
+    .media {
+      a {
+        color: black;
+        margin: 5px;
+
+        .icon{
+          font-size: 40px;
+        }
+      }
+    }
+
+    .credits{
+      margin-top: 40px;
+      font-size: 15px;
+      margin-left: -100px;
+    }
+  }
+}
