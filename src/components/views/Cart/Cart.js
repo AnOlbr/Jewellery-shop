@@ -1,37 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import Button from '@material-ui/core/Button';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { connect } from 'react-redux';
+import { CartCard } from '../../common/CartCard/CartCard';
+import { getCart } from '../../../redux/cartRedux';
 
 import styles from './Cart.module.scss';
 
-const Component = ({ className, children }) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Cart</h2>
-    {children}
-  </div>
-);
+const Component = ({ className, cart }) => {
+  const [open, setOpen] = useState(false);
 
-Component.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <div className={clsx(className, styles.root)}>
+      <Button
+        className={styles.cartButton}
+        onClick={(e) => handleClick(e)}
+      >
+        <ShoppingBasketIcon size="large" />
+        <div className={styles.cartContent}>
+          {cart.length}
+        </div>
+      </Button>
+      {open ? (
+        <div className={styles.cartOpen}>
+          <div className={styles.cartBackground}>
+            <div className={styles.cartItems}>
+              {cart.length ? (cart.map((prod) => (<CartCard key={prod.id} {...prod} />)))
+                : (
+                  <div className={styles.cartEmpty}>
+                    <p>Cart is empty</p>
+                  </div>
+                )}
+            </div>
+            {cart.length ? (
+              <div>
+                <Button color="primary" variant="contained" href="/order">Order</Button>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
 };
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
+Component.propTypes = {
+  className: PropTypes.string,
+  cart: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  cart: getCart(state),
+});
 
 // const mapDispatchToProps = dispatch => ({
 //   someAction: arg => dispatch(reduxActionCreator(arg)),
 // });
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  Component as Cart,
-  // Container as Cart,
-  Component as Cart,
+  Container as Cart,
+  Component as CartComponent,
 };

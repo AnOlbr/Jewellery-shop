@@ -1,4 +1,23 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+
+  display: flex;
+  flex-direction: column;
+
+  .alert{
+    font-size: 120px;
+    font-weight: normal;
+    color: #f50057;
+    margin: auto;
+    margin-top: 150px;
+  }
+
+  .info{
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+}

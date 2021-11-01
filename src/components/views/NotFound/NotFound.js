@@ -10,7 +10,8 @@ import styles from './NotFound.module.scss';
 
 const Component = ({className, children}) => (
   <div className={clsx(className, styles.root)}>
-    <h2>NotFound</h2>
+    <h2 className={styles.alert}>404</h2>
+    <h3 className={styles.info}>Sorry! Page not found, go to the homepage.</h3>
     {children}
   </div>
 );

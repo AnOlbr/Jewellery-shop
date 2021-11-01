@@ -1,29 +1,31 @@
 @import '../../../styles/settings.scss';
 
 .root {
-  background: grey;
-  display: flex;
+  background: #C9D0D5;
+  position: absolute;
+  width: 100%;
+  margin-top: 50px;
 
   .container {
     display: flex;
-    margin: auto;
+    flex-direction: column;
     padding: 20px;
+    height: 150px;
 
     .media {
+      margin: auto;
       a {
         color: black;
         margin: 5px;
 
         .icon{
-          font-size: 40px;
+          font-size: 35px;
         }
       }
     }
-
     .credits{
-      margin-top: 40px;
+      margin: auto;
       font-size: 15px;
-      margin-left: -100px;
     }
   }
 }

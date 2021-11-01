@@ -49,4 +49,20 @@ export const initialState = {
       error: false,
     },
   },
+
+  cart: {
+    products: [
+      {
+        id: '1',
+        title: 'Amethyst pendant',
+        price: 15,
+        image: 'https://i.imgur.com/hB1JfQv.jpeg',
+        notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,',
+        value: 5,
+      },
+    ],
+    total: 10,
+    order: [],
+  },
 };
+
