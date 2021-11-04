@@ -3,9 +3,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 
-
 /* ROUTES */
-//
+const productsRoutes = require('./routes/products.routes');
+const orderRoutes = require('./routes/order.routes');
 
 const app = express();
 
@@ -18,22 +18,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname + '/client/build')));
 
 /* API ENDPOINTS */
-//
+app.use('/api', productsRoutes);
+app.use('/api', orderRoutes);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 app.use((req, res) => {
-    res.status(404).json({ message: 'Not found '});
+  res.status(404).json({ message: 'Not found ' });
 });
 
 /* MONGOOSE */
-mongoose.connect('mongodb://localhost:27017/JewelleryShop', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://AnOlbr:3000@jewelleryshop.elpsz.mongodb.net/JewelleryShop`, { useNewUrlParser: true, dbName: "JewelleryShop" });
 const db = mongoose.connection;
 
 db.once('open', () => {
-    console.log('Conntected to the database');
+  console.log('Conntected to the database');
 });
 
 db.on('error', err => console.log('Error ' + err));
@@ -41,7 +42,7 @@ db.on('error', err => console.log('Error ' + err));
 /* START SERVER */
 const port = process.env.PORT || 8000;
 const server = app.listen(port, () => {
-    console.log('Server is running on port: ' + port);
+  console.log('Server is running on port: ' + port);
 });
 
 module.exports = server;

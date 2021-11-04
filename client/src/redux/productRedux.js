@@ -1,9 +1,8 @@
+import axios from 'axios';
+import { API_URL } from '../config';
+
 /* selectors */
 export const getAll = ({ products }) => products.data;
-export const getProductById = ({ products }, id) => {
-  const product = products.data.filter((prod) => prod.id === id);
-  return product[0];
-};
 
 /* action name creator */
 const reducerName = 'products';
@@ -13,13 +12,26 @@ const createActionName = (name) => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const FETCH_PRODUCTS = createActionName('FETCH_PRODUCTS');
 
 /* action creators */
-export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
+export const fetchStart = (payload) => ({ payload, type: FETCH_START });
 export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 
 /* thunk creators */
+export const fetchProducts = () => (dispatch) => {
+  dispatch(fetchStart());
+
+  axios
+    .get(`${API_URL}/products`)
+    .then((res) => {
+      dispatch(fetchSuccess(res.data));
+    })
+    .catch((err) => {
+      dispatch(fetchError(err.message || true));
+    });
+};
 
 /* reducer */
 export const reducer = (statePart = [], action = {}) => {
@@ -52,6 +64,11 @@ export const reducer = (statePart = [], action = {}) => {
         },
       };
     }
+    case FETCH_PRODUCTS:
+      return {
+        ...statePart,
+        data: [...action.payload],
+      };
     default:
       return statePart;
   }

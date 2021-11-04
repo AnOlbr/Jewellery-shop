@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import clsx from 'clsx';
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -13,8 +14,7 @@ import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
 import { OrderCard } from '../../common/OrderCard/OrderCard';
-
-import { getCart, getTotal, sendOrder } from '../../../redux/cartRedux';
+import { getCart, getTotal, sendOrderRequest } from '../../../redux/cartRedux';
 
 import styles from './Order.module.scss';
 
@@ -34,7 +34,6 @@ class Component extends React.Component {
 
   handleChange = (event, name) => {
     const { order } = this.state;
-
     this.setState({ order: { ...order, [name]: event.target.value } });
   };
 
@@ -94,7 +93,7 @@ class Component extends React.Component {
               fullWidth
               autoComplete="shipping address"
               value={order.address}
-              onChange={(e) => handleChange(e, 'address1')}
+              onChange={(e) => handleChange(e, 'address')}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -170,7 +169,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  sendOrder: ({ order, cart, total }) => dispatch(sendOrder({ order, cart, total })),
+  sendOrder: ({ order, cart, total }) => dispatch(sendOrderRequest({ order, cart, total })),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
