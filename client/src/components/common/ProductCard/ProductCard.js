@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 
 import clsx from 'clsx';
 
@@ -37,16 +38,16 @@ const Component = ({
             <input type="number" min="1" max="10" value={value} onChange={onChange} />
           </CardContent>
           <CardActions className={styles.actions} >
-            <Button color="primary" href={`/products/${_id}`} size="small">More</Button><div></div>
-            <Button
-              color="primary"
-              size="small"
+            <Link to={`/products/${_id}`}>
+              <div className={styles.button}>More</div>
+            </Link>
+            <div className={styles.button}
               onClick={() => addToCart({
                 _id, title, price, image, value,
               })}
             >
               Add to cart
-            </Button>
+            </div>
           </CardActions>
         </div>
       </Card>
