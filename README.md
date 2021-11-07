@@ -1,3 +1,5 @@
+https://white-and-blue-jewellery-shop.herokuapp.com/ 
+
 ## Available Scripts
 
 In the project directory, you can run:
